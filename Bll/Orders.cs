@@ -21,7 +21,7 @@ namespace Bll
 
         public IEnumerable<OrderRO> GetAllOrders()
         {
-            List<Order> items = _dalContext.Orders.Where(p => p.Complete == true).ToList();
+            List<Order> items = _dalContext.Orders.Where(p => p.Complete == true & p.Picked == false).ToList();
             List<OrderRO> orders = new List<OrderRO>();
             foreach(Order item in items)
             {

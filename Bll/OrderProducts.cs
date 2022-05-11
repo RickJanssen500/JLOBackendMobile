@@ -28,7 +28,7 @@ namespace Bll
 
         public OrderProductRO Get(int id) 
         {
-            OrderProduct product = _dalContext.OrderProducts.Where(p => p.OrderId  == id & p.Picked == false).Include(m => m.product).First();
+            OrderProduct product = _dalContext.OrderProducts.Where(p => p.OrderId == id & p.Picked == false).Include(P => P.product).FirstOrDefault();
             OrderProductRO orderProduct = new OrderProductRO();
             orderProduct.Name = product.product.Name;
             orderProduct.Amount = product.Amount;
