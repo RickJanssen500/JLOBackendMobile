@@ -30,9 +30,18 @@ namespace Bll
         {
             OrderProduct product = _dalContext.OrderProducts.Where(p => p.OrderId == id & p.Picked == false).Include(P => P.product).FirstOrDefault();
             OrderProductRO orderProduct = new OrderProductRO();
-            orderProduct.Name = product.product.Name;
-            orderProduct.Amount = product.Amount;
-            orderProduct.Id = product.Id;
+            if (product != null)
+            {
+                orderProduct.Name = product.product.Name;
+                orderProduct.Amount = product.Amount;
+                orderProduct.Id = product.Id;
+            }
+            else 
+            {
+                orderProduct.Name = "EndPicking";
+                orderProduct.Amount = 0;
+                orderProduct.Id = 0;
+            }
             return orderProduct;
         }
     }
